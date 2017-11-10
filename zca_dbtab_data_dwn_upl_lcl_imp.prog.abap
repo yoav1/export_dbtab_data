@@ -492,7 +492,12 @@ CLASS lcl_app IMPLEMENTATION.
             APPEND <ls_data> TO <lt_data>.
             IF ls_header-size = 0.
               TRY .
-                  INSERT (ls_header-table) FROM TABLE <lt_data>.
+                  CASE abap_true.
+                    WHEN insert.
+                      INSERT (ls_header-table) FROM TABLE <lt_data>.
+                    WHEN modify.
+                      MODIFY (ls_header-table) FROM TABLE <lt_data>.
+                  ENDCASE.
                 CATCH cx_sy_open_sql_db INTO lx_sy_open_sql_db.
                   lv_expt_text = lx_sy_open_sql_db->get_text( ).
                   ls_result-err_txt = lv_expt_text.
