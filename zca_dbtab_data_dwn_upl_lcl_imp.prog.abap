@@ -492,6 +492,9 @@ CLASS lcl_app IMPLEMENTATION.
             APPEND <ls_data> TO <lt_data>.
             IF ls_header-size = 0.
               TRY .
+                  IF del_trgt = abap_true.
+                    DELETE FROM (ls_header-table).
+                  ENDIF.
                   CASE abap_true.
                     WHEN insert.
                       INSERT (ls_header-table) FROM TABLE <lt_data>.

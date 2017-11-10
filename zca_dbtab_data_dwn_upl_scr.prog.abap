@@ -14,6 +14,7 @@
   SELECTION-SCREEN BEGIN OF BLOCK b02 WITH FRAME.
   SELECT-OPTIONS: tables FOR gv_table DEFAULT 'SCARR' MODIF ID prm.
   PARAMETERS: show_res AS CHECKBOX    DEFAULT 'X' MODIF ID res,
+              del_trgt AS CHECKBOX                MODIF ID res,
               insert   RADIOBUTTON GROUP gr2      MODIF ID res,
               modify   RADIOBUTTON GROUP gr2      MODIF ID res.
   SELECTION-SCREEN END OF BLOCK b02.
